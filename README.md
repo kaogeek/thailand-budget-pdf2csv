@@ -12,6 +12,6 @@
 
 ## Result
 
-We wait your result : )
+We wait your results : )
 
 **Goodluck Havefun**
