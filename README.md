@@ -1,5 +1,5 @@
 # thailand-budget-pdf2csv
-## Let's create a tool to convert Thailand budget from PDF to CSV!
+## Let's create a tool to convert Thailand Government Budgeting from PDF to CSV!
 
 [![N|Solid](https://avatars.githubusercontent.com/u/76727483?s=200&v=4)](https://github.com/kaogeek)
 
