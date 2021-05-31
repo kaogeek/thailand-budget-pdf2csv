@@ -4,14 +4,18 @@
 [![N|Solid](https://avatars.githubusercontent.com/u/76727483?s=200&v=4)](https://github.com/kaogeek)
 
 รวมพลัง Dev แปลงงบ
-จาก PDF สู่ Machine-readable 
+จาก PDF สู่ Machine-readable
+
+เพื่อการตรวจสอบงบประมาณแผ่นดินที่ง่ายมากขึ้น
 
 ## Usage
 
-- Download all budget PDFs file from `budget-pdf`
+- Download budget PDF file from `budget-pdf` (เล่มขาวคาดแดง)
 
 ## Result
 
 We wait your results : )
 
-**Goodluck Havefun**
+## Talk
+
+**"ก้าวGeek Community"** Line Group: http://line.me/ti/g/STUxfMX87U
