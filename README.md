@@ -16,6 +16,8 @@
 
 We wait your results : )
 
+Note: Please see output example in "Output_Example_xx.xlsx" at repository root.
+
 ## Talk
 
 **"ก้าวGeek Community"** Line Group: http://line.me/ti/g/STUxfMX87U
