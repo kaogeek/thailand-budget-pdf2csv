@@ -53,4 +53,16 @@ Download source budget PDF files from `budget-pdf` (เล่มขาวคา�
 
 ## Talk
 
-**"ก้าวGeek Community"**, Line Group: http://line.me/ti/g/STUxfMX87U
+**"ก้าวGeek Community"** Line Group: http://line.me/ti/g/STUxfMX87U
+
+## PDF to HTML to CSV
+
+### Prerequisites
+Requires `docker` to be installed.
+
+### How to run ?
+```shell
+make sample/pdf2html # Converting from PDF `8.pdf` to HTML
+make run/parser # Parse HTML into data
+```
+
