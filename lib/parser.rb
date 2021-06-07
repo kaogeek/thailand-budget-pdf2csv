@@ -19,17 +19,23 @@ class Parser
   # Parse REF_DOC from cover page of the report
   # Params:
   # +cover_file_name+:: a path to the html file of the cover page in relative to parser.rb (e.g. '../budget-html/8-pm-office-cover.html')
-  def ref_doc(cover_file_path)
+  def ref_doc(cover_file_path, is_cover: true)
     raw_html_dir = File.join(File.dirname(__FILE__), cover_file_path)    
-    doc = File.open(raw_html_dir) { |f| Nokogiri::HTML(f) }
+    doc = File.open(raw_html_dir) do |f|
+      Nokogiri::HTML(f) do |config|
+        config.options = Nokogiri::XML::ParseOptions::HUGE
+      end
+    end
 
-    if doc.at('div:contains("เอกสารงบประมาณ")') == nil
+    page = cover_page_node(doc, is_cover: is_cover)
+
+    if page.text == nil
       puts cover_file_path
-      puts doc.at('div:contains("เอกสารงบประมาณ")')
+      puts page
       return
     end
-    # chabub_th, fiscal_year_th, lem_th = doc.at('div:contains("ประจำาปีงบประมาณ")').text.strip.scan(TH_NUM_REGEX)
-    chabub_th, fiscal_year_th, lem_th = doc.at('div:contains("เอกสารงบประมาณ")').text.strip.scan(TH_NUM_REGEX)
+  
+    chabub_th, fiscal_year_th, lem_th = page.text.strip.scan(TH_NUM_REGEX)
 
     fiscal_year_be = fiscal_year_th.split("").map { |th_num| th_num_to_arabic(th_num) }.join
     chabub = chabub_th.split("").map { |th_num| th_num_to_arabic(th_num) }.join
@@ -46,6 +52,11 @@ class Parser
 
   private def be_to_ad(be_year) = be_year - 543
 
+  private def cover_page_node(doc, is_cover: true)
+    return doc.at('div:contains("เอกสารงบประมาณ")') if is_cover
+    doc.at('body').at_css('[data-page-no=3]').at('div:contains("เอกสารงบประมาณ")')
+  end
+
   def parse(filename)
     puts 'parsing data...'
 
@@ -54,7 +65,11 @@ class Parser
     output_dir = File.join(File.dirname(__FILE__), 'csv', "#{filename_without_extension}.csv")
 
     # parse html into Ruby obj
-    doc = File.open(raw_html_dir) { |f| Nokogiri::HTML(f) }
+    doc = File.open(raw_html_dir) do |f|
+      Nokogiri::HTML(f) do |config|
+        config.options = Nokogiri::XML::ParseOptions::HUGE
+      end
+    end
 
     # simple cleanup
     data = doc.css('.t').map(&:text).map(&:strip).map { |s| s.split("  ") }.each { |i| i.filter! { |ii| ii != ""} }
