@@ -8,10 +8,10 @@ end
 
 desc 'convert all budgetary pdf to html'
 task :pdf2html do
-  puts 'Not implemented'
+  system 'TEST=pdf_converter_test.rb TESTOPTS="--name=test_extract_all" rake test'
 end
 
-namespace "pdf2html" do
+namespace 'pdf2html' do
   desc 'covert only cover pages from budgetary pdf to html'
   task :only_cover do
     system 'TEST=pdf_converter_test.rb TESTOPTS="--name=test_extract_only_cover" rake test'
@@ -20,4 +20,11 @@ end
 
 desc 'parse budgetary html to csv'
 task :parse do
+end
+
+namespace 'test' do
+  desc 'run only parser tests'
+  task :parser do
+    system 'TEST=parser_test.rb rake test'
+  end
 end
