@@ -20,6 +20,7 @@ end
 
 desc 'parse budgetary html to csv'
 task :parse do
+  system 'TEST=parser_test.rb TESTOPTS="--name=test_parse_returns_correct_csv" rake test'
 end
 
 namespace 'test' do

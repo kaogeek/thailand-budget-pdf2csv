@@ -24,6 +24,7 @@ class PDFConverter
     puts 'done'
   end
 
+  # TODO: Make this loop through all files
   def extract_all(input_path: 'budget-pdf', output_path: 'lib/budget-html', output_suffix: '')
     proj_root_path, pdf_dir = gen_dirs(input_path, output_path)
     output_filename = gen_output_filename('8', output_suffix)
@@ -49,6 +50,6 @@ class PDFConverter
   end
 
   private def extract_all_cmd(proj_path, input_path, output_filename)
-    "docker run -ti --rm -v #{proj_path}:/pdf pdf2htmlex/pdf2htmlex:#{IMAGE_VERSION} --tounicode 1 --optimize-text 1 --space-as-offset 0 --process-outline 0 --process-nontext 0 #{input_path} #{output_filename}"
+    "docker run -ti --rm -v #{proj_path}:/pdf pdf2htmlex/pdf2htmlex:#{IMAGE_VERSION} --tounicode 1 --optimize-text 0 --space-as-offset 0 --process-outline 0 --process-nontext 0 #{input_path} #{output_filename}"
   end
 end

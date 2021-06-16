@@ -1,6 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    byebug (11.1.3)
     coderay (1.1.3)
     method_source (1.0.0)
     minitest (5.14.4)
@@ -11,6 +12,9 @@ GEM
     pry (0.14.1)
       coderay (~> 1.1)
       method_source (~> 1.0)
+    pry-byebug (3.8.0)
+      byebug (~> 11.0)
+      pry (~> 0.10)
     racc (1.5.2)
 
 PLATFORMS
@@ -21,6 +25,7 @@ DEPENDENCIES
   minitest
   nokogiri
   pry
+  pry-byebug
 
 BUNDLED WITH
    2.2.15

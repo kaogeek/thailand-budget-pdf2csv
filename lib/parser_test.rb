@@ -43,6 +43,7 @@ class TestParser < Minitest::Test
     assert_equal '2022.3.1', Parser.new.ref_doc('budget-html/8-full.html', is_cover: false)
   end
 
-  def parse_returns_correct_csv
+  def test_parse_returns_correct_csv
+    Parser.new.parse 'budget-html/8-full.html'
   end
 end
