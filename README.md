@@ -10,11 +10,19 @@
 
 ## Usage
 
-- Download budget PDF file from `budget-pdf` (เล่มขาวคาดแดง)
+#### PDF -> TXT
 
-## Result
+You can download the results and see the source code in each approach under `./txt-extraction` folder, or, just download output files from shortcut links below:
 
-We wait for your results : )
+- **teecute-gcloud-vision:** [Google Drive](https://drive.google.com/drive/folders/10MaVM0jKW2oAAfHoRw6nvFY57071Qd2N?usp=sharing) folder.
+
+#### TXT -> CSV
+
+We're still waiting for your results .. : )
+
+## Let's Code!
+
+Download source budget PDF files from `budget-pdf` (เล่มขาวคาดแดง) and do some secret magics to generate output `csv` files with exepcted format below:
 
 #### Expected Output Format (V1)
 
