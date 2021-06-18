@@ -63,6 +63,8 @@ Since all output files including `jpg` and `txt` for each individual page are to
       - *.txt
 ```
 
+Since this project use **Google Cloud Vision** api for OCR operation, you can [download](https://drive.google.com/file/d/19NQOTGlY6vXUGUsemh71Hphx8KVCEr44/view?usp=sharing) gcloud-vision response message in json format which will contain the **full information of OCR results** including (x, y) coordinate of text box in each page via the link provided earlier.
+
 ## Source
 
 You can see `.ipynb` source code in `./source` folder.
