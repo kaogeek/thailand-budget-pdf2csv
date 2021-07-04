@@ -110,7 +110,6 @@ ministries_and_budget_units_in_order.each.with_index do |mnbu, budget_unit_index
       if i.size == 0 || i[0]['text'].match?(/8\.\sรายงานสถานะและแผนการใช้จ่ายเงินนอกงบประมาณ/) # empty page or include next section "8. รายงานสถานะและแผนการใช้จ่ายเงินนอกงบประมาณ"
         if found_budget_unit_start_page
           # set up processed_page to not loop through processed page to improve performance
-          # binding.pry
           processed_page = processed_page + index
           break
         end
@@ -145,36 +144,3 @@ report_json = Oj.dump reports
 File.open('2022-3-1-reports.json', 'w') do |f|
   f << report_json
 end
-
-#### parse reports to CSV
-### find ref doc
-# build each row
-def build_row(report, ref_doc, id)
-  # CROSS_FUNC? = start_with? แผนบูรณาการ
-  BULLET_REGEX = /\d\.[\d\.]+|\d\./
-  binding.pry
-  report.drop.each do |page|
-    
-  end
-  report.map do |page|
-    {
-      "ITEM_ID" => "#{ref_doc}-#{id}",
-      "REF_DOC" => ref_doc,
-      "REF_PAGE_NO" => page[:page_no],
-      "MINISTRY" => page[:ministry],
-      "BUDGETARY_UNIT" => page[:budget_unit]
-    }
-  end
-end
-
-CSV_HEADERS = %w[ITEM_ID REF_DOC REF_PAGE_NO MINISTRY BUDGETARY_UNIT CROSS_FUNC? BUDGET_PLAN OUTPUT PROJECT CATEGORY_LV1 CATEGORY_LV2 CATEGORY_LV3 CATEGORY_LV4 CATEGORY_LV5 CATEGORY_LV6 ITEM_DESCRIPTION FISCAL_YEAR AMOUNT OBLIGED?]
-
-CSV.open('2022-3-1.csv', 'w', headers: true) do |csv|
-  csv << CSV_HEADERS
-
-  reports.each.with_index do |r, i|
-    build_row(r, ref_doc, i).each { |page| csv << page }
-  end
-end
- 
-puts 'done'
