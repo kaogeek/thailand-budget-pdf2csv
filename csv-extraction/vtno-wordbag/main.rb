@@ -2,7 +2,7 @@ require 'oj'
 require 'csv'
 require 'pry'
 
-filename = '/Users/tino.thamjarat/Downloads/2022-3-1.json'
+filename = '2022-3-1.json'
 
 MINISTRY_PREFIX = [
   "กระทรวง", "สำนัก", "กรม" "ส่วนราชการ", "หน่วยงาน", "จังหวัดและกลุ่มจังหวัด",
