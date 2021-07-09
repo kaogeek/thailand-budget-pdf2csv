@@ -65,6 +65,8 @@ Since all output files including `jpg` and `txt` for each individual page are to
 
 Since this project use **Google Cloud Vision** api for OCR operation, you can [download](https://drive.google.com/file/d/19NQOTGlY6vXUGUsemh71Hphx8KVCEr44/view?usp=sharing) gcloud-vision response message in json format which will contain the **full information of OCR results** including (x, y) coordinate of text box in each page via the link provided earlier.
 
+For combined json file --a file containing 14K+ pages' `textAnnotations` of gcloud vision output, you can download it from [./output/thaiBudget2022.json](https://drive.google.com/file/d/1kpC-MB4oUE9IrmIbHr7SUQ-KBPXldwuM/view?usp=sharing).
+
 ## Source
 
 You can see `.ipynb` source code in `./source` folder.
