@@ -60,9 +60,3 @@
 |`dline_tolerance=23`|Return default line tolerance of the page|
 |`index_page`|Return page index of the document|
 |`pdfpage`|Return pdf page of page|
-
-## **Note**
-
-* `(sim_coord[1] < 130).any()` is page number, using numpy array. `y` position less than 130.
-* `re.match(r'[0-9]{1,3}(,[0-9]{1,3})*', text) and (scoord[1] > 130).any() and (scoord[0] > 1050).all()` is amount.
-* depends on each document
