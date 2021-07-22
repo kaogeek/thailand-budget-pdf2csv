@@ -18,6 +18,8 @@ You can download the results and see the source code in each approach under `./t
 
 #### TXT -> CSV
 
+You can download the results and see the source code in each approach under `./csv-extraction` folder, or, just download output files from shortcut links below:
+
 - **napatswift-coordintes:** [Google Drive](https://drive.google.com/folderview?id=1O-A5ZIqXfQzbdfOh1UO75cnKKPnfqLa8) folder.
 
 ## Let's Code!
