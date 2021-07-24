@@ -22,6 +22,12 @@ You can download the results and see the source code in each approach under `./c
 
 - **napatswift-coordintes:** [Google Drive](https://drive.google.com/folderview?id=1O-A5ZIqXfQzbdfOh1UO75cnKKPnfqLa8) folder.
 
+## Translations
+
+#### English version
+
+- **napatswift-coordintes** (partially translated using Google Translation API): [Google Sheet](https://docs.google.com/spreadsheets/d/1rKR1kLuSDssT0_xLpGE_oRm2tPD5ZRhzErWq-8UzH6A/edit#gid=1374765115), see [@asiripanich](https://github.com/asiripanich)'s [repo](https://github.com/asiripanich/translate-thaigov-budget) for code.
+
 ## Let's Code!
 
 Download source budget PDF files from `budget-pdf` (เล่มขาวคาดแดง) and do some secret magics to generate output `csv` files with exepcted format below:
