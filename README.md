@@ -22,11 +22,11 @@ You can download the results and see the source code in each approach under `./c
 
 - **napatswift-coordintes:** [Google Drive](https://drive.google.com/folderview?id=1O-A5ZIqXfQzbdfOh1UO75cnKKPnfqLa8) folder.
 
-#### English version of **napatswift-coordintes** (partially translated using Google Translation API)
+## Translations
 
-- [Google Sheet](https://docs.google.com/spreadsheets/d/1rKR1kLuSDssT0_xLpGE_oRm2tPD5ZRhzErWq-8UzH6A/edit#gid=1374765115)
+#### English version
 
-See [this repo](https://github.com/asiripanich/translate-thaigov-budget) for code.
+- **napatswift-coordintes** (partially translated using Google Translation API): [Google Sheet](https://docs.google.com/spreadsheets/d/1rKR1kLuSDssT0_xLpGE_oRm2tPD5ZRhzErWq-8UzH6A/edit#gid=1374765115), see [@asiripanich](https://github.com/asiripanich)'s [repo](https://github.com/asiripanich/translate-thaigov-budget) for code.
 
 ## Let's Code!
 
