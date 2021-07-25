@@ -59,6 +59,32 @@ Download source budget PDF files from `budget-pdf` (เล่มขาวคา�
 
 **Note:** Please see output example in `output_example_vx.xlsx` and `output_example_vx.csv` at repository root.
 
+## Release Notes
+
+#### 25 Jul 2021
+
+- Fix some of **Syntactic Error**s reported by [issue#15](https://github.com/kaogeek/thailand-budget-pdf2csv/issues/15).
+- Fix **Compiler Error** for wrong `AMOUNT` output on obliged item written in `"XXXX - YYYY    ZZZZ บาท"` format.
+  - For example, if the obliged entry is written as `"2562 - 2564    30,000,000 บาท"`, the output will be:
+    ```
+      2562    10,000,000
+      2563    10,000,000
+      2564    10,000,000
+    ```
+    instead of
+    ```
+      2562    30,000,000
+      2563    30,000,000
+      2564    30,000,000
+    ```
+- Sending **OCR Error** reported by [issue#11](https://github.com/kaogeek/thailand-budget-pdf2csv/issues/11) to `DEBUG_LOG` to make it clear that the error was originated from the OCR Tool and needed to be cleaned by hand.
+
+#### 21 Jul 2021
+
+- First version release
+
+- You can download the first version in CSV format [here](https://drive.google.com/file/d/1qZA-jSOyIYgkYKRAsBxBGxWu7YpkXV4x/view?usp=sharing).
+
 ## Talk
 
 **"ก้าวGeek Community"**, Line Group: http://line.me/ti/g/STUxfMX87U
