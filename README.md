@@ -85,6 +85,21 @@ Download source budget PDF files from `budget-pdf` (เล่มขาวคา�
 
 - You can download the first version in CSV format [here](https://drive.google.com/file/d/1qZA-jSOyIYgkYKRAsBxBGxWu7YpkXV4x/view?usp=sharing).
 
+## Powered by This Dataset
+
+- **Budget Overview**\
+by korlan rayong
+https://public.tableau.com/app/profile/korlan.rayong2953/viz/OverviewBudget65/Dashboard1
+
+![Visualization by korlan rayong](/images/korlan-budgetoverview.png)
+
+- **2022 Thai Budget Structure**\
+by Thanawit Prasongpongchai\
+Visualization: https://taepras.github.io/thaibudget65/\
+Repository: https://github.com/taepras/thaibudget65
+
+![Visualization by Thanawit Prasongpongchai](/images/taepras-thaibudget65-preview.png)
+
 ## Talk
 
 **"ก้าวGeek Community"**, Line Group: http://line.me/ti/g/STUxfMX87U
