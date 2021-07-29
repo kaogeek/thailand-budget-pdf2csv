@@ -61,6 +61,12 @@ Download source budget PDF files from `budget-pdf` (เล่มขาวคา�
 
 ## Release Notes
 
+#### 29 Jul 2021
+
+- Send messages to `DEBUG_LOG` to cleary inform user about the source of error where it was orignated from: Syntactic Error or OCR Error.
+  - Invalid `CATEGORY_LV1` values will be reported in `DEBUG_LOG` as follows: "CATEGORY_LV1 is not as described". [issue#15-comment](https://github.com/kaogeek/thailand-budget-pdf2csv/issues/15#issuecomment-886193037)
+  - Invalid `AMOUNT` values will be reported in `DEBUG_LOG` as follows: "AMOUNT FORMAT IS WRONG".
+
 #### 25 Jul 2021
 
 - Fix some of **Syntactic Error**s reported by [issue#15](https://github.com/kaogeek/thailand-budget-pdf2csv/issues/15).
