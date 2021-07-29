@@ -14,7 +14,7 @@
 
 You can download the results and see the source code in each approach under `./txt-extraction` folder, or, just download output files from shortcut links below:
 
-- **teecute-gcloud-vision:** [Google Drive](https://drive.google.com/drive/folders/10MaVM0jKW2oAAfHoRw6nvFY57071Qd2N?usp=sharing) folder.
+- **tee4cute-gcloud-vision:** [Google Drive](https://drive.google.com/drive/folders/10MaVM0jKW2oAAfHoRw6nvFY57071Qd2N?usp=sharing) folder.
 
 #### TXT -> CSV
 
