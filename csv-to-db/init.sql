@@ -1,26 +1,50 @@
-create table budget_items (
-    ITEM_ID          text,
-    REF_DOC          text,
-    REF_PAGE_NO      text,
-    MINISTRY         text,
-    BUDGETARY_UNIT   text,
-    "CROSS_FUNC?"    text,
-    BUDGET_PLAN      text,
-    OUTPUT           text,
-    PROJECT          text,
-    CATEGORY_LV1     text,
-    CATEGORY_LV2     text,
-    CATEGORY_LV3     text,
-    CATEGORY_LV4     text,
-    CATEGORY_LV5     text,
-    CATEGORY_LV6     text,
-    ITEM_DESCRIPTION text,
-    FISCAL_YEAR      text,
-    AMOUNT           text,
-    "OBLIGED?"       text
+CREATE TEMPORARY TABLE temp_budget_items (
+    ITEM_ID          TEXT,
+    REF_DOC          TEXT,
+    REF_PAGE_NO      INT,
+    MINISTRY         TEXT,
+    BUDGETARY_UNIT   TEXT,
+    "CROSS_FUNC?"    BOOLEAN,
+    BUDGET_PLAN      TEXT,
+    OUTPUT           TEXT,
+    PROJECT          TEXT,
+    CATEGORY_LV1     TEXT,
+    CATEGORY_LV2     TEXT,
+    CATEGORY_LV3     TEXT,
+    CATEGORY_LV4     TEXT,
+    CATEGORY_LV5     TEXT,
+    CATEGORY_LV6     TEXT,
+    ITEM_DESCRIPTION TEXT,
+    FISCAL_YEAR      TEXT,
+    AMOUNT           TEXT,    -- firstly treated as text since, for example, `AMOUNT` value comes as "21,905,000"
+    "OBLIGED?"       BOOLEAN,
+    DEBUG_LOG        TEXT
 );
 
-copy budget_items (
+CREATE TABLE budget_items (
+    ITEM_ID          TEXT,
+    REF_DOC          TEXT,
+    REF_PAGE_NO      INT,
+    MINISTRY         TEXT,
+    BUDGETARY_UNIT   TEXT,
+    "CROSS_FUNC?"    BOOLEAN,
+    BUDGET_PLAN      TEXT,
+    OUTPUT           TEXT,
+    PROJECT          TEXT,
+    CATEGORY_LV1     TEXT,
+    CATEGORY_LV2     TEXT,
+    CATEGORY_LV3     TEXT,
+    CATEGORY_LV4     TEXT,
+    CATEGORY_LV5     TEXT,
+    CATEGORY_LV6     TEXT,
+    ITEM_DESCRIPTION TEXT,
+    FISCAL_YEAR      TEXT,
+    AMOUNT           NUMERIC,
+    "OBLIGED?"       BOOLEAN,
+    DEBUG_LOG        TEXT
+);
+
+COPY temp_budget_items (
     ITEM_ID,
     REF_DOC,
     REF_PAGE_NO,
@@ -39,8 +63,54 @@ copy budget_items (
     ITEM_DESCRIPTION,
     FISCAL_YEAR,
     AMOUNT,
-    "OBLIGED?"
+    "OBLIGED?",
+    DEBUG_LOG
 )
-from '/usr/src/output_examples_v1.csv'
-delimiter ','
-csv header;
+FROM '/usr/src/output_example_v2.csv'
+DELIMITER ','
+CSV HEADER;
+
+INSERT INTO budget_items (
+    ITEM_ID,
+    REF_DOC,
+    REF_PAGE_NO,
+    MINISTRY,
+    BUDGETARY_UNIT,
+    "CROSS_FUNC?",
+    BUDGET_PLAN,
+    OUTPUT,
+    PROJECT,
+    CATEGORY_LV1,
+    CATEGORY_LV2,
+    CATEGORY_LV3,
+    CATEGORY_LV4,
+    CATEGORY_LV5,
+    CATEGORY_LV6,
+    ITEM_DESCRIPTION,
+    FISCAL_YEAR,
+    AMOUNT,
+    "OBLIGED?",
+    DEBUG_LOG
+)
+SELECT
+    t.ITEM_ID,
+    t.REF_DOC,
+    t.REF_PAGE_NO,
+    t.MINISTRY,
+    t.BUDGETARY_UNIT,
+    t."CROSS_FUNC?",
+    t.BUDGET_PLAN,
+    t.OUTPUT,
+    t.PROJECT,
+    t.CATEGORY_LV1,
+    t.CATEGORY_LV2,
+    t.CATEGORY_LV3,
+    t.CATEGORY_LV4,
+    t.CATEGORY_LV5,
+    t.CATEGORY_LV6,
+    t.ITEM_DESCRIPTION,
+    t.FISCAL_YEAR,
+    CAST(REPLACE(t.AMOUNT, ',', '') AS NUMERIC) AS AMOUNT,
+    t."OBLIGED?",
+    t.DEBUG_LOG
+FROM temp_budget_items AS t;
