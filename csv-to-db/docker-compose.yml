@@ -11,4 +11,4 @@ services:
       - "5432:5432"
     volumes:
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
-      - ../output_examples_v1.csv:/usr/src/output_examples_v1.csv
+      - ../output_example_v2.csv:/usr/src/output_example_v2.csv
