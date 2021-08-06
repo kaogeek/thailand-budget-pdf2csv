@@ -1,0 +1,11 @@
+version: "3"
+
+services:
+  kaogeek_db:
+    image: postgres:13.3-buster
+    environment:
+      - POSTGRES_DB=thailand_budget_db
+      - POSTGRES_USER=kaogeek
+      - POSTGRES_PASSWORD=kaogeek
+    ports:
+      - "5432:5432"
