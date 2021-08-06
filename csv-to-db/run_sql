@@ -1,0 +1,31 @@
+#! /bin/bash
+set -e
+
+{ help_msg=$(cat); } <<HELP
+Usage: run_sql [ -h help] [ path-to-sql_file ]
+
+-h       show this help message
+HELP
+
+while getopts "h" opt; do
+	case ${opt} in
+	h)
+		echo "$help_msg"
+		exit
+		;;
+	*)
+		echo 'Invalid args'
+		echo "$help_msg"
+		exit
+		;;
+	esac
+done
+
+if [ -z "$1" ]; then
+  echo 'Missing required argument'
+  echo "$help_msg"
+  exit 1
+fi
+
+docker cp "$1" "$(docker ps | grep 'kaogeek' | awk -F ' ' '{print $1}')":/"$1"
+docker exec -it "$(docker ps | grep 'kaogeek' | awk -F ' ' '{print $1}')" psql -U kaogeek -p 5432 -d thailand_budget_db -f /"$1"

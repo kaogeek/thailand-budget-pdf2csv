@@ -14,6 +14,9 @@ cd ./csv-to-db
 # Start local Postgres with docker-compose, the database will run at localhost:5432
 docker compose up -d
 
+# Create the table
+./run_sql create-report-table.sql
+
 # Connect to the database from command line
 ./connect.sh
 
