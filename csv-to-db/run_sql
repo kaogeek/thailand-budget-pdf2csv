@@ -2,11 +2,11 @@
 set -e
 
 { help_msg=$(cat); } <<HELP
-Usage: run_sql [ -h help] [ -f path-to-sql-file ] [ -c sql-string]
+Usage: run_sql [ -h help] [ -f path-to-sql-file ] [ -c sql-string ]
 
 -h                       show this help message
--f path-to-sql-file      path to sql file
--c sql-string            sql string
+-f path-to-sql-file      path to sql file to be executed
+-c sql-string            sql string to be executed
 HELP
 
 file_name=''
