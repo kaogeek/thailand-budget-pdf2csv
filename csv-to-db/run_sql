@@ -2,13 +2,24 @@
 set -e
 
 { help_msg=$(cat); } <<HELP
-Usage: run_sql [ -h help] [ path-to-sql_file ]
+Usage: run_sql [ -h help] [ -f path-to-sql-file ] [ -c sql-string]
 
--h       show this help message
+-h                       show this help message
+-f path-to-sql-file      path to sql file
+-c sql-string            sql string
 HELP
 
-while getopts "h" opt; do
+file_name=''
+sql_string=''
+
+while getopts "hf:c:" opt; do
 	case ${opt} in
+	f)
+		file_name=${OPTARG}
+		;;
+	c)
+		sql_string=${OPTARG}
+		;;
 	h)
 		echo "$help_msg"
 		exit
@@ -21,11 +32,17 @@ while getopts "h" opt; do
 	esac
 done
 
-if [ -z "$1" ]; then
-  echo 'Missing required argument'
-  echo "$help_msg"
-  exit 1
+if [ -n "$file_name" ]; then
+	docker cp "$file_name" "$(docker ps | grep 'kaogeek' | awk -F ' ' '{print $1}')":/"$file_name"
+	docker exec -it "$(docker ps | grep 'kaogeek' | awk -F ' ' '{print $1}')" psql -U kaogeek -p 5432 -d thailand_budget_db -f /"$file_name"
+	exit
 fi
 
-docker cp "$1" "$(docker ps | grep 'kaogeek' | awk -F ' ' '{print $1}')":/"$1"
-docker exec -it "$(docker ps | grep 'kaogeek' | awk -F ' ' '{print $1}')" psql -U kaogeek -p 5432 -d thailand_budget_db -f /"$1"
+if [ -n "$sql_string" ]; then
+	docker exec -it "$(docker ps | grep 'kaogeek' | awk -F ' ' '{print $1}')" psql -U kaogeek -p 5432 -d thailand_budget_db -c "$sql_string"
+	exit
+fi
+
+echo 'Missing required argument'
+echo "$help_msg"
+exit 1

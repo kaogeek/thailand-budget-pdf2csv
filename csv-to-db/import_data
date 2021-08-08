@@ -1,0 +1,46 @@
+#! /bin/bash
+
+set -e
+
+{ help_msg=$(cat); } <<HELP
+Import data into the local postgres
+
+Usage: import_data [ -h help]
+
+-h                show this help message
+HELP
+
+while getopts "h" opt; do
+	case ${opt} in
+	h)
+		echo "$help_msg"
+		exit
+		;;
+	*)
+		echo 'Invalid args'
+		echo "$help_msg"
+		exit
+		;;
+	esac
+done
+
+# Download full data from napatswift repo
+curl https://raw.githubusercontent.com/napatswift/thailand-budget-pdf2csv/main/csv-extraction/napatswift-coordintes/output/65_thailand_budget_extracted_b4_cleansing_28Jul21.csv > full_budget.csv
+
+# Replace header with valid column name
+header=',ITEM_ID,REF_DOC,REF_PAGE_NO,MINISTRY,BUDGETARY_UNIT,CROSS_FUNC?,BUDGET_PLAN,OUTPUT,PROJECT,CATEGORY_LV1,CATEGORY_LV2,CATEGORY_LV3,CATEGORY_LV4,CATEGORY_LV5,CATEGORY_LV6,ITEM_DESCRIPTION,FISCAL_YEAR,AMOUNT,OBLIGED?,DEBUG_LOG'
+header_replacement=',item_id,ref_doc,ref_page_no,ministry,budgetary_unit,is_cross_func,budget_plan,output,project,category_lv1,category_lv2,category_lv3,category_lv4,category_lv5,category_lv6,item_description,fiscal_year,amount,is_obliged,debug_log'
+
+sed -i "s/$header/$header_replacement/" full_budget.csv
+
+# Remove first and last column and convert amount format to number
+docker run -it --rm --name csv-to-db-script -v "$PWD":/usr/src/myapp -w /usr/src/myapp ruby:3.0 ruby csv_to_db.rb
+
+# Drop existing DB if exist and create a new one
+./run_sql -c "drop table if exists budget;"
+./run_sql -f create-report-table.sql
+
+# Run import script
+docker cp import_csv.sql "$(docker ps | grep 'kaogeek' | awk -F ' ' '{print $1}')":/import_csv.sql
+docker cp full_budget_db_ready.csv "$(docker ps | grep 'kaogeek' | awk -F ' ' '{print $1}')":/full_budget_db_ready.csv
+docker exec -it "$(docker ps | grep 'kaogeek' | awk -F ' ' '{print $1}')" psql -U kaogeek -p 5432 -d thailand_budget_db -f /import_csv.sql
