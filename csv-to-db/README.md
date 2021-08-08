@@ -35,7 +35,7 @@ docker exec -it $(docker ps | grep 'kaogeek' | awk -F ' ' '{print $1}') psql -U 
 ./run_sql -c "drop table if exists budget;"
 
 # Run a sql file from your shell
-./run_sql -f create-report-table.sql
+./run_sql -f create_report_table.sql
 ```
 
 - `./connect` is a script that connect you to the local Postgres DB with `psql`

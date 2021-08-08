@@ -38,7 +38,7 @@ docker run -it --rm --name csv-to-db-script -v "$PWD":/usr/src/myapp -w /usr/src
 
 # Drop existing DB if exist and create a new one
 ./run_sql -c "drop table if exists budget;"
-./run_sql -f create-report-table.sql
+./run_sql -f create_report_table.sql
 
 # Run import script
 docker cp import_csv.sql "$(docker ps | grep 'kaogeek' | awk -F ' ' '{print $1}')":/import_csv.sql
