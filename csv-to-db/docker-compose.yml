@@ -9,3 +9,5 @@ services:
       - POSTGRES_PASSWORD=kaogeek
     ports:
       - "5432:5432"
+    volumes:
+      - ./create_report_table.sql:/docker-entrypoint-initdb.d/init.sql
